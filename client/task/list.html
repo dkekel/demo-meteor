@@ -1,0 +1,16 @@
+<template name="list">
+    <div class="container">
+        <header>
+            <h1>Spring Campus Demo TODO list</h1>
+        </header>
+        <ul>
+            {{#each tasks}}
+                {{> task}}
+            {{/each}}
+        </ul>
+    </div>
+</template>
+
+<template name="task">
+    <li>{{text}}</li>
+</template>
