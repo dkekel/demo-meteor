@@ -22,3 +22,15 @@ Template.list.events({
         target.text.value = '';
     }
 });
+
+Template.task.events({
+    'click .toggle-checked'() {
+        // Set the checked property to the opposite of its current value
+        Tasks.update(this._id, {
+            $set: {checked: !this.checked},
+        });
+    },
+    'click #deleteTask'() {
+        Tasks.remove(this._id);
+    }
+});
