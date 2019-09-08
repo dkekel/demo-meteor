@@ -1,8 +1,15 @@
 import {Tasks} from '../../api/tasks';
+import {ReactiveDict} from 'meteor/reactive-dict';
+
+Template.list.onCreated(function bodyOnCreated() {
+    this.state = new ReactiveDict();
+});
 
 Template.list.helpers({
     tasks() {
-        return Tasks.find({}, {sort: {createdAt: -1}});
+        const instance = Template.instance();
+        const taskSelector = instance.state.get('hideCompleted') ? {checked: {$ne: true}} : {};
+        return Tasks.find(taskSelector, {sort: {createdAt: -1}});
     }
 });
 
@@ -20,7 +27,10 @@ Template.list.events({
         });
         // Clear form
         target.text.value = '';
-    }
+    },
+    'change .hide-completed input'(event, instance) {
+        instance.state.set('hideCompleted', event.target.checked);
+    },
 });
 
 Template.task.events({

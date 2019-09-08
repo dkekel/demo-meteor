@@ -2,12 +2,18 @@
     <div>
         <h1>Add new task</h1>
         <form id="newTask">
+            <label for="newTask">Task description:</label>
             <input type="text" name="text" size="50" placeholder="Type new task description"/>
-            <div>
-                <button type="submit">Add task</button>
-                <button type="reset">Clear</button>
-            </div>
+            <button type="submit">Add task</button>
+            <button type="reset">Clear</button>
         </form>
+    </div>
+    <div>
+        <h1>Filters</h1>
+        <label class="hide-completed">
+            <input type="checkbox"/>
+            Hide Completed Tasks
+        </label>
     </div>
 
     <div class="container">
