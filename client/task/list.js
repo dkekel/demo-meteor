@@ -10,7 +10,13 @@ Template.list.helpers({
         const instance = Template.instance();
         const taskSelector = instance.state.get('hideCompleted') ? {checked: {$ne: true}} : {};
         return Tasks.find(taskSelector, {sort: {createdAt: -1}});
-    }
+    },
+    incompleteCount() {
+        return Tasks.find({ checked: { $ne: true } }).count();
+    },
+    multipleTasks() {
+        return Tasks.find({ checked: { $ne: true } }).count() !== 1;
+    },
 });
 
 Template.list.events({
