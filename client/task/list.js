@@ -1,5 +1,6 @@
 import {Tasks} from '../../api/tasks';
 import {ReactiveDict} from 'meteor/reactive-dict';
+import { Meteor } from 'meteor/meteor';
 
 Template.list.onCreated(function bodyOnCreated() {
     this.state = new ReactiveDict();
@@ -29,6 +30,8 @@ Template.list.events({
         // Insert a task into the collection
         Tasks.insert({
             text,
+            owner: Meteor.userId(),
+            username: Meteor.user().username,
             createdAt: new Date(), // current time
         });
         // Clear form

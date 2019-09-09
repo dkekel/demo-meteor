@@ -1,13 +1,16 @@
 <template name="list">
-    <div>
-        <h1>Add new task</h1>
-        <form id="newTask">
-            <label for="newTask">Task description:</label>
-            <input type="text" name="text" size="50" placeholder="Type new task description"/>
-            <button type="submit">Add task</button>
-            <button type="reset">Clear</button>
-        </form>
-    </div>
+    {{> loginButtons}}
+    {{#if currentUser}}
+        <div>
+            <h1>Add new task</h1>
+            <form id="newTask">
+                <label for="newTask">Task description:</label>
+                <input type="text" name="text" size="50" placeholder="Type new task description"/>
+                <button type="submit">Add task</button>
+                <button type="reset">Clear</button>
+            </form>
+        </div>
+    {{/if}}
     <div>
         <h1>Filters</h1>
         <label class="hide-completed">
@@ -32,6 +35,7 @@
     <li class="{{#if checked}}checked{{/if}}">
         <input type="checkbox" checked="{{checked}}" class="toggle-checked"/>
         <span>{{text}}</span>
+        <span>Created By: {{username}}</span>
         <button id="deleteTask" type="button">Delete</button>
     </li>
 </template>
