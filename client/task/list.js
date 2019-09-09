@@ -28,12 +28,7 @@ Template.list.events({
         const target = event.target;
         const text = target.text.value;
         // Insert a task into the collection
-        Tasks.insert({
-            text,
-            owner: Meteor.userId(),
-            username: Meteor.user().username,
-            createdAt: new Date(), // current time
-        });
+        Meteor.call('tasks.insert', text);
         // Clear form
         target.text.value = '';
     },
@@ -45,11 +40,9 @@ Template.list.events({
 Template.task.events({
     'click .toggle-checked'() {
         // Set the checked property to the opposite of its current value
-        Tasks.update(this._id, {
-            $set: {checked: !this.checked},
-        });
+        Meteor.call('tasks.setChecked', this._id, !this.checked);
     },
     'click #deleteTask'() {
-        Tasks.remove(this._id);
+        Meteor.call('tasks.remove', this._id);
     }
 });
