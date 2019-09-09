@@ -6,7 +6,28 @@
 </body>
 
 <template name="main">
-    <h1>Welcome to CERN Spring Campus Hamburg!</h1>
-    <a href="/list">Go to the list of steps for demo</a>
-    {{> loginButtons}}
+    <nav class="level">
+        <div class="level-item has-text-centered">
+            <div>
+                <p class="level-item"><strong>{{> loginButtons}}</strong></p>
+            </div>
+        </div>
+    </nav>
+    <section class="hero is-dark has-text-centered">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Welcome to CERN Spring Campus Hamburg!
+                </h1>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container has-text-centered">
+            <h2 class="subtitle">
+                <!--suppress HtmlUnknownTarget -->
+                <a href="/list">Go to the list of steps for demo</a>
+            </h2>
+        </div>
+    </section>
 </template>

@@ -1,46 +1,86 @@
 <template name="list">
-    {{> loginButtons}}
-    {{#if currentUser}}
-        <div>
-            <h1>Add new task</h1>
-            <form id="newTask">
-                <label>
-                    Task description:
-                    <input type="text" name="text" size="50" placeholder="Type new task description"/>
-                </label>
-                <button type="submit">Add task</button>
-                <button type="reset">Clear</button>
-            </form>
+    <nav class="level">
+        <div class="level-item has-text-centered">
+            <div>
+                <p class="level-item"><strong>{{> loginButtons}}</strong></p>
+            </div>
         </div>
-    {{/if}}
-    <div>
-        <h1>Filters</h1>
-        <label class="hide-completed">
-            <input type="checkbox"/>
-            Hide Completed Tasks
-        </label>
+    </nav>
+    <div class="hero">
+        <div class="hero-body">
+            <div class="columns">
+                {{#if currentUser}}
+                    <div class="column">
+                        <div class="container">
+                            <h1 class="title">Add new task</h1>
+                            <form id="newTask">
+                                <div class="field">
+                                    <label class="label">Task description</label>
+                                    <div class="control">
+                                        <!--suppress HtmlFormInputWithoutLabel -->
+                                        <input class="input is-rounded" type="text" name="text" size="50"
+                                               placeholder="Type new task description"/>
+                                    </div>
+                                </div>
+                                <div class="field is-grouped">
+                                    <div class="control">
+                                        <button type="submit" class="button is-success is-rounded">Add task</button>
+                                    </div>
+                                    <div class="control">
+                                        <button type="reset" class="button is-text is-rounded">Clear</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                {{/if}}
+                <div class="column">
+                    <div class="container">
+                        <h1 class="title">Filters</h1>
+                        <div class="field">
+                            <label class="hide-completed checkbox">
+                                <input type="checkbox"/>
+                                Hide Completed Tasks
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="container">
-        <header>
-            <h1>Spring Campus Demo TODO list (incomplete: {{{incompleteCount}}} task{{#if multipleTasks}}s{{/if}})</h1>
-        </header>
-        <ul>
-            {{#each tasks}}
-                {{> task}}
-            {{/each}}
-        </ul>
+    <div class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">Spring Campus Demo TODO list (incomplete: {{{incompleteCount}}} task{{#if
+                        multipleTasks}}s{{/if}})</h1>
+                <div class="content is-medium">
+                    <ul>
+                        {{#each tasks}}
+                            {{> task}}
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <template name="task">
     <li class="{{#if checked}}checked{{/if}}">
-        <!--suppress HtmlFormInputWithoutLabel -->
-        <input type="checkbox" checked="{{checked}}" class="toggle-checked"/>
-        <span>{{text}}</span>
-        <span>Created By: {{username}}</span>
-        {{#if currentUser}}
-            <button id="deleteTask" type="button">Delete</button>
-        {{/if}}
+        <div class="columns">
+            <div class="column">
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <input type="checkbox" checked="{{checked}}" class="toggle-checked"/>
+                <span>{{text}}</span>
+                <span class="tag is-info is-rounded ">Created By: {{username}}</span>
+            </div>
+            {{#if currentUser}}
+                <div class="column">
+                    <button class="button is-danger is-small is-rounded delete-button" id="deleteTask" type="button">Delete</button>
+                </div>
+            {{/if}}
+        </div>
     </li>
 </template>

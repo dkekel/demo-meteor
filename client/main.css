@@ -6,3 +6,7 @@ body {
 li.checked {
   color: forestgreen;
 }
+
+.delete-button {
+  vertical-align: middle;
+}
